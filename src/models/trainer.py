@@ -2,7 +2,7 @@ import os
 
 import numpy as np
 import torch
-from tensorboardX import SummaryWriter
+from torch.utils.tensorboard import SummaryWriter
 
 import distributed
 # import onmt

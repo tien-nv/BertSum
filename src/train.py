@@ -280,7 +280,7 @@ if __name__ == '__main__':
 
     parser.add_argument("-encoder", default='classifier', type=str, choices=['classifier','transformer','rnn','baseline'])
     parser.add_argument("-mode", default='train', type=str, choices=['train','validate','test'])
-    parser.add_argument("-bert_data_path", default='../bert_data/cnndm')
+    parser.add_argument("-bert_data_path", default='../bert_data/cnndm/cnndm')
     parser.add_argument("-model_path", default='../models/')
     parser.add_argument("-result_path", default='../results/cnndm')
     parser.add_argument("-temp_dir", default='../temp')
@@ -306,7 +306,7 @@ if __name__ == '__main__':
     parser.add_argument("-warmup_steps", default=8000, type=int)
     parser.add_argument("-max_grad_norm", default=0, type=float)
 
-    parser.add_argument("-save_checkpoint_steps", default=5, type=int)
+    parser.add_argument("-save_checkpoint_steps", default=200000, type=int)
     parser.add_argument("-accum_count", default=1, type=int)
     parser.add_argument("-world_size", default=1, type=int)
     parser.add_argument("-report_every", default=1, type=int)
@@ -314,7 +314,7 @@ if __name__ == '__main__':
     parser.add_argument("-recall_eval", type=str2bool, nargs='?',const=True,default=False)
 
 
-    parser.add_argument('-visible_gpus', default='-1', type=str)
+    parser.add_argument('-visible_gpus', default='0', type=str)
     parser.add_argument('-gpu_ranks', default='0', type=str)
     parser.add_argument('-log_file', default='../logs/cnndm.log')
     parser.add_argument('-dataset', default='')

@@ -150,29 +150,31 @@ class BertData():
         self.pad_vid = self.tokenizer.vocab['[PAD]']
 
     def preprocess(self, src, tgt, oracle_ids):
-
+        # print(src)
         if (len(src) == 0):
             return None
 
         original_src_txt = [' '.join(s) for s in src]
 
+        # print(original_src_txt)
         labels = [0] * len(src)
         for l in oracle_ids:
             labels[l] = 1
 
-        idxs = [i for i, s in enumerate(src) if (len(s) > self.args.min_src_ntokens)]
+        idxs = [i for i, s in enumerate(src) if (len(s) > self.args.min_src_ntokens)] #min_src_ntoken là 5
 
-        src = [src[i][:self.args.max_src_ntokens] for i in idxs]
+        src = [src[i][:self.args.max_src_ntokens] for i in idxs] #max_src_ntokens là 200
         labels = [labels[i] for i in idxs]
         src = src[:self.args.max_nsents]
         labels = labels[:self.args.max_nsents]
-
+        src_txt = [' '.join(sent) for sent in src]
+        print(src_txt)
         if (len(src) < self.args.min_nsents):
             return None
         if (len(labels) == 0):
             return None
 
-        src_txt = [' '.join(sent) for sent in src]
+        
         # text = [' '.join(ex['src_txt'][i].split()[:self.args.max_src_ntokens]) for i in idxs]
         # text = [_clean(t) for t in text]
         text = ' [SEP] [CLS] '.join(src_txt)

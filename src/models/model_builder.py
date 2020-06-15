@@ -56,7 +56,7 @@ class Bert(nn.Module):
 
 
 class Summarizer(nn.Module):
-    def __init__(self, args, device, load_pretrained_bert = False, bert_config = None):
+    def __init__(self, args, device, load_pretrained_bert = True, bert_config = None):
         super(Summarizer, self).__init__()
         self.args = args
         self.device = device
